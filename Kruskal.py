@@ -23,27 +23,27 @@ def Kruskal(G):
 
     vertices_conexos = []
 
-    # criamos uma lista de conjuntos disjuntos com apenas um vértice cada um, a
-    # princípio, para depois fazermos as uniões
+    # creamos una lista de conjuntos disjuntos con solo un vértice cada uno, el 27 
+    # comienzo, para que podamos hacer las uniones más tarde
     for v in G.nodes():
         vertices_conexos.append({v})
 
-    for aresta in E:
-        indexConj1 = encontrar_conjunto(vertices_conexos, aresta[0])
-        indexConj2 = encontrar_conjunto(vertices_conexos, aresta[1])
+    for arista in E:
+        indexConj1 = encontrar_conjunto(vertices_conexos, arista[0])
+        indexConj2 = encontrar_conjunto(vertices_conexos, arista[1])
 
-        # Se o conjunto encontrado para o vértice 0 é o mesmo do vértice 1,
-        # então não podemos uni-los, já que isto fecharia um ciclo.
+        # Si el conjunto encontrado para el vértice 0 es el mismo que el del vértice 1, 36 
+        # para que no podamos unirlos, ya que esto cerraría un ciclo.
         if indexConj1 != indexConj2:
 
-            # Se o grafo contém o peso, então adicionamos as três informações
-            # da aresta (2 vértices e dados)
+            # Si la gráfica contiene el peso, agregamos las tres piezas de información 40 
+            # de borde (2 vértices y dados)
             if grafo_com_peso:
-                MST.add_edge(aresta[0], aresta[1], aresta[2])
+                MST.add_edge(arista[0], arista[1], arista[2])
             else:
-                MST.add_edge(aresta[0], aresta[1])
+                MST.add_edge(arista[0], arista[1])
 
-            # removemos os dois conjuntos de vértices do vetor vertices_conexos
+            # eliminamos los dos conjuntos de vértices del vector vertices_connected
             if indexConj1 > indexConj2:
                 conj1 = vertices_conexos.pop(indexConj1)
                 conj2 = vertices_conexos.pop(indexConj2)
@@ -51,7 +51,7 @@ def Kruskal(G):
                 conj2 = vertices_conexos.pop(indexConj2)
                 conj1 = vertices_conexos.pop(indexConj1)
 
-            # e inserimos um novo conjunto a partir da união dos dois
+            # e inserte un nuevo conjunto de la unión de los dos
             vertices_conexos.append(conj1.union(conj2))
 
     return MST
